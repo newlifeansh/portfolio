@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>안석환 | Product Owner - AI Profitability & Growth</title>
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #111; background: #fff; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== Utility ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .blue { color: #2563EB; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #eee; transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    nav .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.5px; }
+    nav .logo span { color: #2563EB; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul li a {
+      font-size: 0.9rem; font-weight: 500; color: #555;
+      transition: color 0.2s; position: relative;
+    }
+    nav ul li a:hover { color: #111; }
+    nav ul li a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0;
+      height: 2px; background: #2563EB; transition: width 0.3s;
+    }
+    nav ul li a:hover::after { width: 100%; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: #111; margin: 5px 0; transition: 0.3s; }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #fafafa 0%, #fff 50%, #f0f4ff 100%);
+    }
+    .hero::before {
+      content: ''; position: absolute; width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+      top: 50%; right: -200px; transform: translateY(-50%);
+    }
+    .hero-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .hero-lines span { position: absolute; background: #e5e7eb; transform-origin: center; }
+    .hero-lines span:nth-child(1) { width: 120%; height: 1px; top: 25%; left: -10%; transform: rotate(-12deg); }
+    .hero-lines span:nth-child(2) { width: 120%; height: 1px; top: 65%; left: -10%; transform: rotate(8deg); }
+    .hero-lines span:nth-child(3) { width: 1px; height: 120%; top: -10%; left: 40%; transform: rotate(6deg); }
+    .hero-lines span:nth-child(4) { width: 1px; height: 120%; top: -10%; left: 70%; transform: rotate(-5deg); }
+    .hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: center; position: relative; z-index: 2;
+      padding-top: 80px;
+    }
+    .hero-text { }
+    .hero-badge {
+      display: inline-block; font-size: 0.75rem; font-weight: 600; color: #2563EB;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
+      background: #eff6ff; padding: 6px 14px; border-radius: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 900;
+      line-height: 1.25; letter-spacing: -1.5px; margin-bottom: 20px;
+    }
+    .hero-desc {
+      font-size: 1.1rem; color: #555; margin-bottom: 32px; line-height: 1.7;
+    }
+    .hero-stats {
+      display: flex; gap: 32px; margin-bottom: 36px;
+      padding: 24px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+    }
+    .hero-stat-value { font-size: 1.6rem; font-weight: 900; color: #2563EB; }
+    .hero-stat-label { font-size: 0.8rem; color: #888; margin-top: 2px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #111; color: #fff; padding: 14px 28px;
+      border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .cta-btn:hover { background: #2563EB; transform: translateY(-2px); }
+    .cta-btn.outline {
+      background: transparent; color: #111; border: 1.5px solid #ddd;
+    }
+    .cta-btn.outline:hover { border-color: #2563EB; color: #2563EB; background: transparent; }
+    .cta-btn svg { width: 16px; height: 16px; }
+
+    /* Hero Profile Card */
+    .hero-profile {
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .profile-card {
+      background: #fff; border-radius: 24px; padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      border: 1px solid #eee; text-align: center; width: 100%; max-width: 400px;
+    }
+    /* 사진을 교체하려면 아래 .profile-photo 의 background-image를 실제 이미지 경로로 변경하세요.
+       예: background-image: url('photo.jpg'); */
+    .profile-photo {
+      width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 20px;
+      background: linear-gradient(135deg, #2563EB, #60a5fa);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; font-weight: 800; color: #fff;
+      box-shadow: 0 8px 30px rgba(37,99,235,0.25);
+      overflow: hidden; position: relative;
+    }
+    .profile-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; top: 0; left: 0;
+    }
+    .profile-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 4px; }
+    .profile-card .role { color: #2563EB; font-weight: 600; font-size: 0.95rem; margin-bottom: 16px; }
+    .profile-card .summary { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 20px; }
+    .profile-companies {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .profile-companies span {
+      font-size: 0.75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 6px; background: #f5f5f5; color: #555;
+    }
+
+    /* ===== Section common ===== */
+    section { padding: 120px 0; }
+    .section-label {
+      font-size: 0.8rem; font-weight: 700; color: #2563EB;
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800;
+      line-height: 1.3; letter-spacing: -1px; margin-bottom: 20px;
+    }
+    .section-desc {
+      font-size: 1.1rem; color: #666; max-width: 640px; margin-bottom: 60px;
+    }
+
+    /* ===== Impact / About ===== */
+    .impact { background: #fafafa; }
+    .impact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .venn { position: relative; width: 100%; aspect-ratio: 1; max-width: 400px; margin: 0 auto; }
+    .venn-circle {
+      position: absolute; width: 55%; height: 55%; border-radius: 50%;
+      border: 2px solid #ddd; display: flex; align-items: center;
+      justify-content: center; font-weight: 700; font-size: 0.85rem;
+      background: rgba(255,255,255,0.6);
+    }
+    .venn-circle.tech { top: 5%; left: 5%; }
+    .venn-circle.biz { top: 5%; right: 5%; }
+    .venn-circle.ux { bottom: 5%; left: 22.5%; }
+    .venn-center {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: #2563EB; color: #fff; border-radius: 50%;
+      width: 110px; height: 110px; display: flex; align-items: center;
+      justify-content: center; text-align: center; font-weight: 700;
+      font-size: 0.75rem; line-height: 1.4;
+      box-shadow: 0 8px 30px rgba(37,99,235,0.3);
+    }
+    .strength-list { list-style: none; }
+    .strength-list li {
+      padding: 20px 0; border-bottom: 1px solid #eee;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .strength-num { font-size: 1.4rem; font-weight: 800; color: #2563EB; min-width: 30px; }
+    .strength-list h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+    .strength-list p { font-size: 0.95rem; color: #666; }
+
+    /* ===== Case Studies ===== */
+    .cases { background: #fff; }
+    .case-card {
+      background: #fafafa; border-radius: 16px; padding: 56px;
+      margin-bottom: 40px; border: 1px solid #eee;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .case-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.06); }
+    .case-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 40px; flex-wrap: wrap; gap: 20px;
+    }
+    .case-label {
+      font-size: 0.75rem; font-weight: 700; color: #2563EB;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .case-company { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900; letter-spacing: -1px; }
+    .case-subtitle { font-size: 1.05rem; color: #555; margin-top: 8px; }
+    .case-period { font-size: 0.85rem; color: #999; margin-top: 4px; }
+    .case-tags { display: flex; gap: 8px; flex-wrap: wrap; align-self: flex-start; }
+    .case-tags span {
+      font-size: 0.8rem; padding: 6px 14px; border-radius: 20px;
+      border: 1px solid #ddd; color: #555; font-weight: 500;
+    }
+    .case-content { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .case-process { list-style: none; }
+    .case-process li {
+      padding: 14px 18px; background: #fff; border-radius: 10px;
+      margin-bottom: 8px; display: flex; align-items: center; gap: 14px;
+      border: 1px solid #eee;
+    }
+    .case-process li::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: #2563EB; flex-shrink: 0;
+    }
+    .step-title { font-weight: 600; font-size: 0.95rem; }
+    .step-desc { font-size: 0.85rem; color: #888; margin-top: 2px; }
+    .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .metric-card {
+      background: #fff; border-radius: 12px; padding: 24px;
+      border: 1px solid #eee; text-align: center;
+    }
+    .metric-value {
+      font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 900;
+      color: #2563EB; margin-bottom: 4px;
+    }
+    .metric-label { font-size: 0.82rem; color: #888; }
+    .case-insight {
+      margin-top: 24px; padding: 18px 22px;
+      background: #f0f4ff; border-radius: 10px; border-left: 4px solid #2563EB;
+      font-size: 0.92rem; color: #444;
+    }
+    .case-links {
+      margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .case-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px;
+      background: #111; color: #fff; font-size: 0.82rem; font-weight: 600;
+      text-decoration: none; transition: background .2s, transform .2s;
+    }
+    .case-link:hover { background: #2563EB; transform: translateY(-2px); }
+    .case-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+    /* ===== Phone Mockup (iPhone 13 mini: 2340x1080, 19.5:9) ===== */
+    .phone-mockup {
+      width: 180px; margin: 0 auto;
+      background: #111; border-radius: 28px; padding: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .phone-notch {
+      width: 70px; height: 5px; background: #111; border-radius: 3px;
+      margin: 0 auto 6px; position: relative; z-index: 2;
+    }
+    .phone-screen {
+      background: #fff; border-radius: 20px; overflow: hidden;
+      aspect-ratio: 9 / 19.5; position: relative;
+      display: flex; flex-direction: column;
+    }
+    .phone-status {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 16px; font-size: 0.6rem; font-weight: 600; color: #333;
+    }
+    .phone-app-header {
+      padding: 12px 16px; font-weight: 700; font-size: 0.85rem;
+      border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 8px;
+    }
+    .phone-app-header .back { color: #2563EB; font-size: 1rem; }
+    .phone-content { padding: 16px; }
+    .phone-chat { display: flex; flex-direction: column; gap: 8px; padding: 12px 16px; }
+    .chat-bubble {
+      padding: 10px 14px; border-radius: 16px; font-size: 0.7rem;
+      max-width: 85%; line-height: 1.4;
+    }
+    .chat-bubble.bot {
+      background: #f0f0f0; color: #333; align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-bubble.user {
+      background: #2563EB; color: #fff; align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-bubble.success {
+      background: #ecfdf5; color: #059669; align-self: flex-start;
+      border: 1px solid #a7f3d0; border-bottom-left-radius: 4px;
+      text-align: center; font-weight: 600;
+    }
+    .phone-input {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-top: 1px solid #f0f0f0; margin-top: auto;
+    }
+    .phone-input-field {
+      flex: 1; background: #f5f5f5; border-radius: 20px;
+      padding: 8px 14px; font-size: 0.65rem; color: #999;
+    }
+    .phone-input-send {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #2563EB; display: flex; align-items: center; justify-content: center;
+    }
+    .phone-input-send svg { width: 12px; height: 12px; fill: #fff; }
+    .phone-mockup-group {
+      display: flex; gap: 24px; justify-content: center; align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    /* Phone - SmartThings variant */
+    .phone-screen.iot .iot-card {
+      background: #f8f8f8; border-radius: 12px; padding: 12px;
+      margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+    }
+    .iot-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .iot-info { flex: 1; }
+    .iot-info .name { font-size: 0.75rem; font-weight: 600; }
+    .iot-info .status { font-size: 0.6rem; color: #999; }
+    .iot-toggle {
+      width: 32px; height: 18px; border-radius: 9px;
+      background: #2563EB; position: relative;
+    }
+    .iot-toggle::after {
+      content: ''; position: absolute; top: 2px; right: 2px;
+      width: 14px; height: 14px; border-radius: 50%; background: #fff;
+    }
+
+    /* Phone - eSports variant */
+    .phone-screen.esports .score-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 16px; background: #111; color: #fff; font-weight: 700;
+    }
+    .score-bar .team { font-size: 0.75rem; }
+    .score-bar .score { font-size: 1.1rem; color: #2563EB; }
+    .highlight-tag {
+      display: inline-block; background: #ff4444; color: #fff;
+      font-size: 0.55rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 4px; margin: 8px 16px;
+    }
+    .video-placeholder {
+      margin: 0 16px 8px; background: #1a1a2e; border-radius: 8px;
+      height: 110px; display: flex; align-items: center; justify-content: center;
+      color: #60a5fa; font-size: 1.5rem;
+    }
+
+    /* ===== Awards ===== */
+    .awards { background: #fafafa; }
+    .awards-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .award-card {
+      background: #fff; border-radius: 14px; padding: 28px 24px;
+      border: 1px solid #eee; text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .award-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); }
+    .award-year {
+      display: inline-block; font-size: 0.75rem; font-weight: 700; color: #2563EB;
+      background: #eff6ff; padding: 4px 12px; border-radius: 12px; margin-bottom: 12px;
+    }
+    .award-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .award-card p { font-size: 0.85rem; color: #888; }
+    .award-icon {
+      width: 48px; height: 48px; margin: 0 auto 14px; border-radius: 50%;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: #fff;
+      box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+    }
+
+    /* ===== Competencies ===== */
+    .competencies { background: #111; color: #fff; }
+    .competencies .section-label { color: #60a5fa; }
+    .competencies .section-desc { color: #999; }
+    .comp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .comp-card {
+      background: #1a1a1a; border: 1px solid #333; border-radius: 16px;
+      padding: 32px 24px; transition: border-color 0.3s, transform 0.3s;
+    }
+    .comp-card:hover { border-color: #2563EB; transform: translateY(-4px); }
+    .comp-icon {
+      width: 48px; height: 48px; background: #2563EB; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+    }
+    .comp-icon svg { width: 24px; height: 24px; fill: #fff; }
+    .comp-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+    .comp-card p { font-size: 0.88rem; color: #999; line-height: 1.6; }
+
+    /* ===== Timeline ===== */
+    .timeline-section { background: #fff; }
+    .timeline { position: relative; padding: 40px 0; }
+    .timeline::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 2px; background: #e5e7eb; transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: flex; align-items: center; position: relative; margin-bottom: 60px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      width: 16px; height: 16px; background: #2563EB; border-radius: 50%;
+      border: 3px solid #fff; box-shadow: 0 0 0 3px #2563EB; z-index: 2;
+    }
+    .timeline-dot.current {
+      width: 20px; height: 20px;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 3px #2563EB; }
+      50% { box-shadow: 0 0 0 6px rgba(37,99,235,0.3); }
+    }
+    .timeline-left, .timeline-right { width: 45%; }
+    .timeline-left { text-align: right; padding-right: 60px; }
+    .timeline-right { margin-left: auto; padding-left: 60px; }
+    .timeline-period { font-size: 0.85rem; color: #999; font-weight: 600; margin-bottom: 4px; }
+    .timeline-company { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+    .timeline-role { font-size: 0.95rem; color: #666; }
+    .timeline-highlights {
+      margin-top: 8px; font-size: 0.85rem; color: #999;
+    }
+    .timeline-highlights span {
+      display: inline-block; background: #f5f5f5; padding: 3px 10px;
+      border-radius: 4px; margin: 2px 4px 2px 0; font-size: 0.78rem;
+    }
+
+    /* ===== Contact ===== */
+    .contact {
+      background: linear-gradient(135deg, #111 0%, #1a1a2e 100%);
+      color: #fff; text-align: center;
+    }
+    .contact .section-title { color: #fff; }
+    .contact-quote {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: #ccc;
+      max-width: 700px; margin: 0 auto 48px; line-height: 1.8;
+      font-weight: 400; position: relative; padding: 0 40px;
+    }
+    .contact-quote::before, .contact-quote::after {
+      position: absolute; font-size: 3rem; color: #2563EB; font-family: Georgia, serif;
+    }
+    .contact-quote::before { content: '\201C'; top: -10px; left: 0; }
+    .contact-quote::after { content: '\201D'; bottom: -20px; right: 0; }
+    .contact-info {
+      display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 48px;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: #999;
+      text-decoration: none; transition: color .2s;
+    }
+    .contact-item:hover { color: #2563EB; }
+    .contact-item svg { width: 18px; height: 18px; fill: #2563EB; }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #0a0a0a; color: #666; text-align: center;
+      padding: 32px 0; font-size: 0.85rem;
+    }
+
+    /* ===== Sub-projects grid ===== */
+    .sub-projects {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px;
+    }
+    .sub-project-card {
+      background: #fff; border-radius: 14px; padding: 28px 24px;
+      border: 1px solid #eee; transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .sub-project-card:hover {
+      transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .sub-project-company {
+      font-size: 0.7rem; font-weight: 700; color: #2563EB;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .sub-project-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .sub-project-card p { font-size: 0.88rem; color: #666; margin-bottom: 12px; line-height: 1.5; }
+    .sub-project-metrics {
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .sub-metric {
+      font-size: 0.78rem; padding: 4px 10px; background: #eff6ff;
+      color: #2563EB; border-radius: 6px; font-weight: 600;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .comp-grid { grid-template-columns: repeat(2, 1fr); }
+      .awards-grid { grid-template-columns: repeat(2, 1fr); }
+      .sub-projects { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        background: #fff; flex-direction: column; padding: 24px;
+        border-bottom: 1px solid #eee; gap: 16px;
+      }
+      nav ul.open { display: flex; }
+      .nav-toggle { display: block; }
+      .hero .container { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+      .hero-profile { order: -1; }
+      .hero-stats { justify-content: center; }
+      .hero-btns { justify-content: center; }
+      .hero h1 { font-size: 2rem; }
+      .impact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .case-card { padding: 28px 20px; }
+      .case-content { grid-template-columns: 1fr; gap: 32px; }
+      .phone-mockup-group { flex-direction: column; align-items: center; }
+      .phone-mockup { width: 160px; }
+      .comp-grid { grid-template-columns: 1fr; }
+      .awards-grid { grid-template-columns: 1fr; }
+      .sub-projects { grid-template-columns: 1fr; }
+      .timeline::before { left: 20px; }
+      .timeline-dot { left: 20px; }
+      .timeline-left { display: none; }
+      .timeline-right { width: 100%; padding-left: 56px; margin-left: 0; }
+      section { padding: 80px 0; }
+    }
+    @media (max-width: 480px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+      .case-header { flex-direction: column; }
+      .hero-stats { flex-direction: column; gap: 16px; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="container">
+    <div class="logo">ASH<span>.</span></div>
+    <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#cases">Case Studies</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#competencies">Competencies</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-lines"><span></span><span></span><span></span><span></span></div>
+  <div class="container">
+    <div class="hero-text fade-in">
+      <h1>기술과 비즈니스,<br>그리고 사용자 경험의<br><span class="blue">교차점</span></h1>
+      <p class="hero-desc">
+        사용자의 흐름을 온/오프라인으로 자연스럽게 이으며<br>
+        도메인마다의 본질적 문제를 꿰뚫는 기획자.
+      </p>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-value">13+</div>
+          <div class="hero-stat-label">Years Experience</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">6회</div>
+          <div class="hero-stat-label">사내 수상</div>
+        </div>
+      </div>
+      <div class="hero-btns">
+        <a href="#cases" class="cta-btn">
+          프로젝트 보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+        </a>
+        <a href="#contact" class="cta-btn outline">Contact</a>
+      </div>
+    </div>
+    <div class="hero-profile fade-in">
+      <div class="profile-card">
+        <div class="profile-photo">
+          <!-- 실제 사진으로 교체: 아래 img 태그의 src를 사진 파일 경로로 변경하세요 -->
+          <img src="photo.jpg" alt="안석환" onerror="this.style.display='none'; this.parentElement.textContent='S';">
+        </div>
+        <h3>안석환</h3>
+        <div class="role">Product Owner</div>
+        <p class="summary">
+          GPT 추론/임베딩/벡터 유사도 모델을 활용한 AI 서비스 기획 경험으로,
+          End-to-End AI 활용 구조를 설계합니다.
+        </p>
+        <div class="profile-companies">
+          <span>KakaoBank</span>
+          <span>Samsung</span>
+          <span>Coupang</span>
+          <span>LG U+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Impact-First / About -->
+<section class="impact" id="about">
+  <div class="container">
+    <div class="impact-grid">
+      <div class="fade-in">
+        <div class="venn">
+          <div class="venn-circle tech">TECH (AI)</div>
+          <div class="venn-circle biz">BUSINESS</div>
+          <div class="venn-circle ux">UX / GROWTH</div>
+          <div class="venn-center">Profitability<br>&amp; Growth</div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="section-label">Impact-First</div>
+        <h2 class="section-title">AI 기술을 비즈니스<br>성과로 증명합니다.</h2>
+        <ul class="strength-list">
+          <li>
+            <span class="strength-num">1.</span>
+            <div>
+              <h3>AI Engineering</h3>
+              <p>문제 생성부터 정답 판별까지 End-to-End AI 활용 구조 설계. GPT 추론, 벡터 유사도, 프롬프트 엔지니어링.</p>
+            </div>
+          </li>
+          <li>
+            <span class="strength-num">2.</span>
+            <div>
+              <h3>Data-Driven Growth</h3>
+              <p>퍼널 분석(Funnel Analysis)을 통한 구매율 및 트래픽 증대. 비이자 수익 모델 발굴, Ad-Tech 제휴.</p>
+            </div>
+          </li>
+          <li>
+            <span class="strength-num">3.</span>
+            <div>
+              <h3>Cross-Platform</h3>
+              <p>IoT, Mobile, Commerce를 아우르는 디바이스 생태계 경험. OCR/Vision 인식, HW/SW 융합.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Case Studies -->
+<section class="cases" id="cases">
+  <div class="container">
+    <div class="section-label fade-in">Case Studies</div>
+    <h2 class="section-title fade-in">프로젝트로 증명한 성과</h2>
+    <p class="section-desc fade-in">AI 기술과 데이터 기반의 의사결정으로 실질적인 비즈니스 임팩트를 만들어낸 핵심 프로젝트들입니다.</p>
+
+    <!-- Case 1: KakaoBank -->
+    <div class="case-card fade-in">
+      <div class="case-header">
+        <div>
+          <div class="case-label">Case Study 01</div>
+          <div class="case-company">KAKAOBANK</div>
+          <div class="case-subtitle">금융을 넘어, AI와 재미로 일상을 연결하다</div>
+          <div class="case-period">2023.05 - Present</div>
+        </div>
+        <div class="case-tags">
+          <span>#LLM_Service</span>
+          <span>#Gamification</span>
+          <span>#Revenue_Growth</span>
+          <span>#FinTech</span>
+        </div>
+      </div>
+      <div class="case-content">
+        <div>
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:20px;">End-to-End AI Process</h3>
+          <ul class="case-process">
+            <li><div><div class="step-title">Keyword Extraction</div><div class="step-desc">키워드 추출 &amp; 문제 생성</div></div></li>
+            <li><div><div class="step-title">User Input</div><div class="step-desc">사용자 답변 (자연어)</div></div></li>
+            <li><div><div class="step-title">AI Processing</div><div class="step-desc">GPT 추론 + Vector Similarity (의미 분석)</div></div></li>
+            <li><div><div class="step-title">Judgment &amp; Reward</div><div class="step-desc">정답 판별 및 리워드 지급</div></div></li>
+          </ul>
+          <div class="case-insight">
+            <strong>Innovation:</strong> 단순 키워드 매칭이 아닌 문맥과 의미를 파악하는 벡터 유사도 모델 적용. 퀴즈 콘텐츠와 리워드로 DAU를 자연 상승시키는 구조 설계.
+          </div>
+        </div>
+        <div>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-value">100만 명</div>
+              <div class="metric-label">출시 3일 만에 달성</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">80%</div>
+              <div class="metric-label">고객 리텐션</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">450만 원</div>
+              <div class="metric-label">일 평균 광고 매출</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">WAU 120만</div>
+              <div class="metric-label">주간 활성 사용자</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">4.7배</div>
+              <div class="metric-label">트래픽 &amp; 광고 수익 증가</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">13억+</div>
+              <div class="metric-label">제휴 비이자 수익</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">45% UP</div>
+              <div class="metric-label">증권 계좌 개설 증대</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">60억 원</div>
+              <div class="metric-label">2026 비이자 수익 전망</div>
+            </div>
+          </div>
+          <div class="case-insight" style="margin-top:20px;">
+            <strong>Gamification:</strong> 게이미피케이션 서비스로 광고 수익 및 트래픽 4.7배 증가. 제휴 연계로 월 1억 원 매출 확보. Active User fee 수수료 2단 인상에도 불구하고 26년 50억 달성 전망.
+          </div>
+        </div>
+      </div>
+      <div class="case-links">
+        <a class="case-link" href="https://m.search.naver.com/search.naver?where=m&sm=mtb_clk.ssT&query=%EC%B9%B4%EB%B1%85%20%EC%9D%B4%EB%AA%A8%EC%A7%80%20%ED%80%B4%EC%A6%88" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h2v7c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h7v2H5z"/></svg>
+          AI 키워드 퀴즈 — 네이버 검색
+        </a>
+      </div>
+    </div>
+
+    <!-- Case 2: Samsung -->
+    <div class="case-card fade-in">
+      <div class="case-header">
+        <div>
+          <div class="case-label">Case Study 02</div>
+          <div class="case-company">SAMSUNG ELECTRONICS</div>
+          <div class="case-subtitle">디바이스와 라이프스타일, 데이터로 연결하다</div>
+          <div class="case-period">2021.09 - 2023.04</div>
+        </div>
+        <div class="case-tags">
+          <span>#SmartThings</span>
+          <span>#IoT</span>
+          <span>#Commerce</span>
+          <span>#O2O</span>
+        </div>
+      </div>
+      <div class="case-content">
+        <div>
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:20px;">Smart Cooking &amp; Sommelier</h3>
+          <ul class="case-process">
+            <li><div><div class="step-title">OCR 바코드 인식</div><div class="step-desc">Vivino / Bixby Vision 활용</div></div></li>
+            <li><div><div class="step-title">알고리즘 매칭 &amp; 추천</div><div class="step-desc">Food Pairing 추천 엔진</div></div></li>
+            <li><div><div class="step-title">기기 자동 설정</div><div class="step-desc">Auto-Cooking 연동</div></div></li>
+          </ul>
+          <h3 style="font-size:1.1rem; font-weight:700; margin:28px 0 16px;">Health + Commerce (North America)</h3>
+          <ul class="case-process">
+            <li><div><div class="step-title">건강 데이터 분석</div><div class="step-desc">Samsung Health AI 분석</div></div></li>
+            <li><div><div class="step-title">칼로리 기반 식단 추천</div><div class="step-desc">AI 추천 기능 활용</div></div></li>
+            <li><div><div class="step-title">커머스 연동</div><div class="step-desc">Walmart / Amazon 장바구니</div></div></li>
+          </ul>
+        </div>
+        <div>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-value">3배</div>
+              <div class="metric-label">앱 연결 매출 증대</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">DAU 694만</div>
+              <div class="metric-label">2배 성장</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">MAU 2.5천만</div>
+              <div class="metric-label">2.3배 성장</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">35%</div>
+              <div class="metric-label">Conversion Rate 증가</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">$500k+</div>
+              <div class="metric-label">출시 1달 기여 매출</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">15%</div>
+              <div class="metric-label">리테일 매출 증대 기여</div>
+            </div>
+          </div>
+          <div class="case-insight" style="margin-top:20px;">
+            <strong>Cross-Platform:</strong> SmartThings 컨텐츠 확보와 글로벌 외식 냉장고 판매량 증대 기여. Vivino + 빅스비 연결 기반 서비스 시나지 확보.
+          </div>
+        </div>
+      </div>
+      <div class="case-links">
+        <a class="case-link" href="https://news.samsung.com/kr/ifa-2023%EC%97%90%EC%84%9C-%EA%B3%B5%EA%B0%9C%ED%95%9C-%EC%BF%A0%ED%82%B9-%EC%96%B4%EC%8B%9C%EC%8A%A4%ED%84%B4%ED%8A%B8-%EC%82%BC%EC%84%B1-%ED%91%B8%EB%93%9Csamsung-food%EB%A5%BC" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h2v7c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h7v2H5z"/></svg>
+          Samsung Food — 삼성 뉴스룸
+        </a>
+        <a class="case-link" href="https://blog.naver.com/itblogger621/222771491441?trackingCode=rss" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h2v7c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h7v2H5z"/></svg>
+          소믈리에 앳 홈 — 블로그
+        </a>
+        <a class="case-link" href="https://www.samsungsvc.co.kr/solution/1589087" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h2v7c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h7v2H5z"/></svg>
+          Food OCR 스캔쿡 — 삼성 서비스
+        </a>
+      </div>
+    </div>
+
+    <!-- Case 3: LG U+ -->
+    <div class="case-card fade-in">
+      <div class="case-header">
+        <div>
+          <div class="case-label">Case Study 03</div>
+          <div class="case-company">LG U+</div>
+          <div class="case-subtitle">5G와 콘텐츠, AI 기반 고객 경험의 시작</div>
+          <div class="case-period">2013.01 - 2021.03</div>
+        </div>
+        <div class="case-tags">
+          <span>#5G_Streaming</span>
+          <span>#AI_Highlights</span>
+          <span>#IoT</span>
+          <span>#Community</span>
+        </div>
+      </div>
+      <div class="case-content">
+        <div>
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:20px;">Game Broadcasting (eSports)</h3>
+          <ul class="case-process">
+            <li><div><div class="step-title">스코어 급변 구간 인식</div><div class="step-desc">실시간 게임 데이터 분석</div></div></li>
+            <li><div><div class="step-title">AI 하이라이트 자동 생성</div><div class="step-desc">핵심 순간 자동 편집 &amp; 제공</div></div></li>
+          </ul>
+          <h3 style="font-size:1.1rem; font-weight:700; margin:28px 0 16px;">Smart Home IoT</h3>
+          <ul class="case-process">
+            <li><div><div class="step-title">IoT 기기 연동</div><div class="step-desc">CCTV, 감지기 등 신규 연동</div></div></li>
+            <li><div><div class="step-title">AI 인식 기반 알림</div><div class="step-desc">움직임 감지 / 화재 감지 AI</div></div></li>
+          </ul>
+        </div>
+        <div>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-value">2.3배</div>
+              <div class="metric-label">10대 고객 확보</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">1억 원</div>
+              <div class="metric-label">광고 수익 달성</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">3배</div>
+              <div class="metric-label">체류 시간 증가</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">2.3배</div>
+              <div class="metric-label">기기 연동 증가</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">102만</div>
+              <div class="metric-label">CCTV 최다 가입자 유지</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">80%</div>
+              <div class="metric-label">VoC 개선율 달성</div>
+            </div>
+          </div>
+          <div class="case-insight" style="margin-top:20px;">
+            <strong>IoT:</strong> 홈 CCTV 최다 가입자 유지(102만, 2018 기준). 고객 데이터 퍼널 분석 바탕으로 증권계좌개설 45% 증가. VoC 개선율 34%에서 80%로 개선.
+          </div>
+        </div>
+      </div>
+      <div class="case-links">
+        <a class="case-link" href="https://youtu.be/KAVP6jXWufQ?si=8N9sgji8LZJxNGyv" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6zm11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+          게임방송 서비스 — YouTube
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- More Projects -->
+<section class="cases" id="projects" style="padding-top:0;">
+  <div class="container">
+    <div class="section-label fade-in">More Projects</div>
+    <h2 class="section-title fade-in">주요 프로젝트 경험</h2>
+    <p class="section-desc fade-in">주요 프로젝트 외에도 다양한 도메인에서 성과를 만들어 왔습니다.</p>
+    <div class="sub-projects">
+      <div class="sub-project-card fade-in">
+        <div class="sub-project-company">KakaoBank</div>
+        <h4>IRP 계좌개설 서비스</h4>
+        <p>증권계좌 개설 활성화 및 비이자 광고수익 26년 내 20억 확보 목표.</p>
+        <div class="sub-project-metrics">
+          <span class="sub-metric">비이자 수익 50% 조기 달성</span>
+          <span class="sub-metric">월 10% 증가</span>
+        </div>
+      </div>
+      <div class="sub-project-card fade-in">
+        <div class="sub-project-company">KakaoBank</div>
+        <h4>공모주 청약 정보 서비스</h4>
+        <p>증권계좌 개설 800만 고객 대상 비이자 수익 50억 추가 확보.</p>
+        <div class="sub-project-metrics">
+          <span class="sub-metric">3일 만에 100만 가입</span>
+          <span class="sub-metric">계좌 개설 2.3배</span>
+        </div>
+      </div>
+      <div class="sub-project-card fade-in">
+        <div class="sub-project-company">KakaoBank</div>
+        <h4>금융상품 투자 서비스</h4>
+        <p>투자 플랫폼 전환 및 26년 내 40억 비이자 수익 체제 개편.</p>
+        <div class="sub-project-metrics">
+          <span class="sub-metric">WAU 5.2배</span>
+          <span class="sub-metric">광고 수익 3배</span>
+        </div>
+      </div>
+      <div class="sub-project-card fade-in">
+        <div class="sub-project-company">Samsung</div>
+        <h4>칼로리 기반 식단 추천</h4>
+        <p>삼성 헬스 경쟁력 강화 및 월마트/아마존 리테일 커머스 연동.</p>
+        <div class="sub-project-metrics">
+          <span class="sub-metric">구매율 35% 증가</span>
+          <span class="sub-metric">$500k+ 매출</span>
+        </div>
+      </div>
+      <div class="sub-project-card fade-in">
+        <div class="sub-project-company">Samsung</div>
+        <h4>커뮤니티 서비스</h4>
+        <p>기기 사용량 및 서비스 앱 사용을 증대를 위한 트래픽 확보. AI 레시피 자동화 에이전트 제공.</p>
+        <div class="sub-project-metrics">
+          <span class="sub-metric">MAU 1.8배</span>
+          <span class="sub-metric">기기 연동 2.3배</span>
+        </div>
+      </div>
+      <div class="sub-project-card fade-in">
+        <div class="sub-project-company">LG U+</div>
+        <h4>IoT 서비스</h4>
+        <p>Smart 홈 IoT 기기 활성화를 위한 서비스 개발 및 CCTV 신규 연동.</p>
+        <div class="sub-project-metrics">
+          <span class="sub-metric">102만 가입자</span>
+          <span class="sub-metric">VoC 80% 개선</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Awards -->
+<section class="awards" id="awards">
+  <div class="container">
+    <div class="section-label fade-in">Awards &amp; Recognition</div>
+    <h2 class="section-title fade-in">수상 이력</h2>
+    <p class="section-desc fade-in">기술과 비즈니스 성과를 인정받아온 기록.</p>
+    <div class="awards-grid">
+      <div class="award-card fade-in">
+        <div class="award-icon">&#9733;</div>
+        <div class="award-year">2016</div>
+        <h3>LG Awards 최우수상</h3>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">&#9733;</div>
+        <div class="award-year">2017</div>
+        <h3>LG Awards 최우수상</h3>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">&#9733;</div>
+        <div class="award-year">2019</div>
+        <h3>LG Awards 최우수상</h3>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">&#9733;</div>
+        <div class="award-year">2021</div>
+        <h3>Samsung Innovation 상</h3>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">&#9733;</div>
+        <div class="award-year">2022</div>
+        <h3>Samsung 서비스 혁신상</h3>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">&#9733;</div>
+        <div class="award-year">2025</div>
+        <h3>Kakaobank 최우수 인재상</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Competencies -->
+<section class="competencies" id="competencies">
+  <div class="container">
+    <div class="section-label fade-in">Core Competencies</div>
+    <h2 class="section-title fade-in">기술과 성장의 4가지 핵심 축</h2>
+    <p class="section-desc fade-in">기술, 전략, UX, 디바이스 전 영역을 아우르는 통합적 역량.</p>
+    <div class="comp-grid">
+      <div class="comp-card fade-in">
+        <div class="comp-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 010 2h-1.07A7.001 7.001 0 0113 22h-2a7.001 7.001 0 01-6.93-6H3a1 1 0 010-2h1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2zm0 7a5 5 0 00-5 5 5 5 0 005 5h0a5 5 0 005-5 5 5 0 00-5-5z"/></svg>
+        </div>
+        <h3>AI & LLM</h3>
+        <p>GPT/Vector 모델 활용, 프롬프트 엔지니어링, 자연어 정답 판별, 임베딩 모델 설계.</p>
+      </div>
+      <div class="comp-card fade-in">
+        <div class="comp-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14zM7 7h4v4H7V7zm6 0h4v2h-4V7zm0 4h4v2h-4v-2zm-6 4h10v2H7v-2z"/></svg>
+        </div>
+        <h3>Growth Strategy</h3>
+        <p>데이터 퍼널(Funnel) 분석, 비이자 수익 모델 발굴, Ad-Tech 제휴, 수익화 전략.</p>
+      </div>
+      <div class="comp-card fade-in">
+        <div class="comp-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h3>UX & Gamification</h3>
+        <p>리텐션 루프 설계, 보상(Reward) 시스템, 행동 유도 심리학, DAU 극대화.</p>
+      </div>
+      <div class="comp-card fade-in">
+        <div class="comp-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 2H5a2 2 0 00-2 2v16a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2zm0 18H5V4h14v16zM12 6a3 3 0 100 6 3 3 0 000-6zm-5 10c0-2.33 3.33-3.5 5-3.5s5 1.17 5 3.5v1H7v-1z"/></svg>
+        </div>
+        <h3>Device & IoT</h3>
+        <p>OCR/Vision 인식 기술, HW/SW 융합, O2O 커머스 연동, 스마트홈 생태계.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Career Timeline -->
+<section class="timeline-section" id="career">
+  <div class="container">
+    <div class="section-label fade-in">Career Timeline</div>
+    <h2 class="section-title fade-in">경력</h2>
+    <p class="section-desc fade-in">기술과 비즈니스의 교차점에서 성장해온 13년의 여정.</p>
+    <div class="timeline">
+      <!-- LG U+ -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-left">
+          <div class="timeline-period">2013.01 - 2021.03</div>
+          <div class="timeline-company">LG U+</div>
+          <div class="timeline-role">Manager - 5G Media / Smart Home / IoT</div>
+          <div class="timeline-highlights">
+            <span>IoT 서비스</span><span>게임방송</span><span>AI 하이라이트</span>
+          </div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right" style="visibility:hidden;"></div>
+      </div>
+      <!-- Coupang -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-left" style="visibility:hidden;"></div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right">
+          <div class="timeline-period">2021.03 - 2021.08</div>
+          <div class="timeline-company">Coupang</div>
+          <div class="timeline-role">리테일 기술 / 헬스 플랫폼</div>
+          <div class="timeline-highlights">
+            <span>리테일 기술</span><span>AI 추천</span>
+          </div>
+        </div>
+      </div>
+      <!-- Samsung -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-left">
+          <div class="timeline-period">2021.09 - 2023.04</div>
+          <div class="timeline-company">Samsung Electronics</div>
+          <div class="timeline-role">Planner - SmartThings Cooking / Health</div>
+          <div class="timeline-highlights">
+            <span>SmartThings</span><span>OCR</span><span>글로벌 커머스</span>
+          </div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right" style="visibility:hidden;"></div>
+      </div>
+      <!-- KakaoBank -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-left" style="visibility:hidden;"></div>
+        <div class="timeline-dot current"></div>
+        <div class="timeline-right">
+          <div class="timeline-period">2023.05 - Present</div>
+          <div class="timeline-company" style="color:#2563EB;">KakaoBank</div>
+          <div class="timeline-role">Product Owner - 수신 / 투자 / 캠퍼스 서비스</div>
+          <div class="timeline-highlights">
+            <span>AI 퀴즈</span><span>게이미피케이션</span><span>투자 플랫폼</span><span>IRP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label fade-in" style="color:#60a5fa;">Next Step</div>
+    <h2 class="section-title fade-in">AI 기술을 실질적인 비즈니스 가치로</h2>
+    <div class="contact-quote fade-in">
+      OCR, AI 인식, 데이터 모델을 실제 서비스에 적용한 경험을 바탕으로,<br>기술을 UX 개선과 지표 성장으로 연결하는 End-to-End Product를 만듭니다.
+    </div>
+    <div class="contact-info fade-in">
+      <a class="contact-item" href="mailto:newlife.ansh@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <span>newlife.ansh@gmail.com</span>
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/connor-sh/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        <span>linkedin.com/in/connor-sh</span>
+      </a>
+      <a class="contact-item" href="tel:010-8080-4458">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span>010-8080-4458</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>Ahn Seok-hwan &copy; 2026. Product Owner - AI Profitability &amp; Growth.</p>
+  </div>
+</footer>
+
+<script>
+  // Navbar shadow
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Fade-in observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Mobile timeline
+  if (window.innerWidth <= 768) {
+    document.querySelectorAll('.timeline-item').forEach(item => {
+      const left = item.querySelector('.timeline-left');
+      const right = item.querySelector('.timeline-right');
+      if (left && left.style.visibility !== 'hidden') {
+        right.style.visibility = 'visible';
+        right.innerHTML = left.innerHTML;
+      }
+    });
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('nav ul').classList.remove('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>
