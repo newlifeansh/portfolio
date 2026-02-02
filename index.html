@@ -247,6 +247,112 @@
     .case-link:hover { background: #2563EB; transform: translateY(-2px); }
     .case-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
 
+    /* Case Step Flow - 문제 정의 > 가설 수립 > 액션 및 검증 > 결과 */
+    .case-projects { }
+    .case-project {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid #eee;
+    }
+    .case-project:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .case-project-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 28px;
+      padding-left: 16px;
+      border-left: 4px solid #2563EB;
+      line-height: 1.4;
+    }
+    .step-flow {
+      position: relative;
+      padding-left: 44px;
+    }
+    .step-flow::before {
+      content: '';
+      position: absolute;
+      left: 13px;
+      top: 14px;
+      bottom: 14px;
+      width: 2px;
+      background: #e5e7eb;
+    }
+    .step-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .step-item:last-child {
+      margin-bottom: 0;
+    }
+    .step-marker {
+      position: absolute;
+      left: -44px;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #eff6ff;
+      color: #2563EB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      z-index: 1;
+    }
+    .step-item:last-child .step-marker {
+      background: #2563EB;
+      color: #fff;
+    }
+    .step-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #2563EB;
+      margin-bottom: 6px;
+    }
+    .step-text {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.7;
+    }
+    .step-actions {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0 0;
+    }
+    .step-actions li {
+      padding: 3px 0 3px 16px;
+      position: relative;
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    .step-actions li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #2563EB;
+      font-weight: 600;
+    }
+    .step-results {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .step-result-tag {
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      background: #eff6ff;
+      color: #2563EB;
+      border-radius: 8px;
+      font-weight: 700;
+      border: 1px solid #dbeafe;
+    }
+
     /* ===== Phone Mockup (iPhone 13 mini: 2340x1080, 19.5:9) ===== */
     .phone-mockup {
       width: 180px; margin: 0 auto;
@@ -514,6 +620,9 @@
       .comp-grid { grid-template-columns: 1fr; }
       .awards-grid { grid-template-columns: 1fr; }
       .sub-projects { grid-template-columns: 1fr; }
+      .step-flow { padding-left: 36px; }
+      .step-marker { left: -36px; width: 24px; height: 24px; font-size: 0.7rem; }
+      .step-flow::before { left: 11px; }
       .timeline::before { left: 20px; }
       .timeline-dot { left: 20px; }
       .timeline-left { display: none; }
@@ -542,7 +651,7 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#awards">Awards</a></li>
       <li><a href="#competencies">Competencies</a></li>
-      <li><a href="#career">Career</a></li>
+      <li><a href="#career">Timeline</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -665,48 +774,75 @@
           <span>#FinTech</span>
         </div>
       </div>
-      <div class="case-content">
-        <div>
-          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:20px;">End-to-End AI Process</h3>
-          <ul class="case-process">
-            <li><div><div class="step-title">Keyword Extraction</div><div class="step-desc">키워드 추출 &amp; 문제 생성</div></div></li>
-            <li><div><div class="step-title">User Input</div><div class="step-desc">사용자 답변 (자연어)</div></div></li>
-            <li><div><div class="step-title">AI Processing</div><div class="step-desc">GPT 추론 + Vector Similarity (의미 분석)</div></div></li>
-            <li><div><div class="step-title">Judgment &amp; Reward</div><div class="step-desc">정답 판별 및 리워드 지급</div></div></li>
-          </ul>
-          <div class="case-insight">
-            <strong>Innovation:</strong> 단순 키워드 매칭이 아닌 문맥과 의미를 파악하는 벡터 유사도 모델 적용. 퀴즈 콘텐츠와 리워드로 DAU를 자연 상승시키는 구조 설계.
+      <div class="case-projects">
+        <!-- AI 키워드 퀴즈 서비스 -->
+        <div class="case-project">
+          <h3 class="case-project-name">AI 키워드 퀴즈 서비스</h3>
+          <div class="step-flow">
+            <div class="step-item">
+              <div class="step-marker">1</div>
+              <div class="step-label">문제 정의</div>
+              <p class="step-text">카카오뱅크 앱 내 고객 참여를 유도하고 비이자 수익을 확보할 새로운 콘텐츠가 필요한 상황</p>
+            </div>
+            <div class="step-item">
+              <div class="step-marker">2</div>
+              <div class="step-label">가설 수립</div>
+              <p class="step-text">GPT 추론과 벡터 유사도 모델을 활용한 AI 퀴즈에 리워드를 결합하면, DAU와 광고 수익을 동시에 견인할 수 있다</p>
+            </div>
+            <div class="step-item">
+              <div class="step-marker">3</div>
+              <div class="step-label">액션 및 검증</div>
+              <ul class="step-actions">
+                <li>키워드 추출 &amp; 문제 자동 생성 파이프라인 구축</li>
+                <li>사용자 자연어 답변 수집</li>
+                <li>GPT 추론 + Vector Similarity 기반 의미 분석 정답 판별</li>
+                <li>정답 시 리워드 자동 지급 시스템 연동</li>
+              </ul>
+            </div>
+            <div class="step-item">
+              <div class="step-marker">4</div>
+              <div class="step-label">결과</div>
+              <div class="step-results">
+                <span class="step-result-tag">3일 만에 100만 참여</span>
+                <span class="step-result-tag">리텐션 80%</span>
+                <span class="step-result-tag">일 광고매출 450만 원</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div>
-          <div class="metrics-grid">
-            <div class="metric-card">
-              <div class="metric-value">100만 명</div>
-              <div class="metric-label">출시 3일 만에 달성</div>
+        <!-- 돈 버는 재미 서비스 -->
+        <div class="case-project">
+          <h3 class="case-project-name">돈 버는 재미 서비스</h3>
+          <div class="step-flow">
+            <div class="step-item">
+              <div class="step-marker">1</div>
+              <div class="step-label">문제 정의</div>
+              <p class="step-text">광고 트래픽과 제휴 기반 비이자 수익 규모를 확대할 구조가 필요</p>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">80%</div>
-              <div class="metric-label">고객 리텐션</div>
+            <div class="step-item">
+              <div class="step-marker">2</div>
+              <div class="step-label">가설 수립</div>
+              <p class="step-text">게이미피케이션 요소와 제휴 연계를 결합하면, 고객 리텐션과 광고·제휴 수익을 동시에 높일 수 있다</p>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">450만 원</div>
-              <div class="metric-label">일 평균 광고 매출</div>
+            <div class="step-item">
+              <div class="step-marker">3</div>
+              <div class="step-label">액션 및 검증</div>
+              <ul class="step-actions">
+                <li>게이미피케이션 서비스 설계 및 출시</li>
+                <li>제휴 연계 수익 모델 구축</li>
+                <li>Active User fee 수수료 구조 설계</li>
+              </ul>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">WAU 120만</div>
-              <div class="metric-label">주간 활성 사용자</div>
+            <div class="step-item">
+              <div class="step-marker">4</div>
+              <div class="step-label">결과</div>
+              <div class="step-results">
+                <span class="step-result-tag">트래픽 &amp; 광고 수익 4.7배 증가</span>
+                <span class="step-result-tag">WAU 120만</span>
+                <span class="step-result-tag">비이자 수익 13억+</span>
+                <span class="step-result-tag">월 1억 원 매출</span>
+              </div>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">4.7배</div>
-              <div class="metric-label">트래픽 &amp; 광고 수익 증가</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-value">13억+</div>
-              <div class="metric-label">제휴 비이자 수익</div>
-            </div>
-          </div>
-          <div class="case-insight" style="margin-top:20px;">
-            <strong>Gamification:</strong> 게이미피케이션 서비스로 광고 수익 및 트래픽 4.7배 증가. 제휴 연계로 월 1억 원 매출 확보. Active User fee 수수료 2단 인상에도 불구하고 26년 50억 달성 전망.
           </div>
         </div>
       </div>
@@ -734,50 +870,73 @@
           <span>#O2O</span>
         </div>
       </div>
-      <div class="case-content">
-        <div>
-          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:20px;">Smart Cooking &amp; Sommelier</h3>
-          <ul class="case-process">
-            <li><div><div class="step-title">OCR 바코드 인식</div><div class="step-desc">Vivino / Bixby Vision 활용</div></div></li>
-            <li><div><div class="step-title">알고리즘 매칭 &amp; 추천</div><div class="step-desc">Food Pairing 추천 엔진</div></div></li>
-            <li><div><div class="step-title">기기 자동 설정</div><div class="step-desc">Auto-Cooking 연동</div></div></li>
-          </ul>
-          <h3 style="font-size:1.1rem; font-weight:700; margin:28px 0 16px;">Health + Commerce (North America)</h3>
-          <ul class="case-process">
-            <li><div><div class="step-title">건강 데이터 분석</div><div class="step-desc">Samsung Health AI 분석</div></div></li>
-            <li><div><div class="step-title">칼로리 기반 식단 추천</div><div class="step-desc">AI 추천 기능 활용</div></div></li>
-            <li><div><div class="step-title">커머스 연동</div><div class="step-desc">Walmart / Amazon 장바구니</div></div></li>
-          </ul>
-        </div>
-        <div>
-          <div class="metrics-grid">
-            <div class="metric-card">
-              <div class="metric-value">3배</div>
-              <div class="metric-label">앱 연결 매출 증대</div>
+      <div class="case-projects">
+        <!-- Smart Cooking & Sommelier -->
+        <div class="case-project">
+          <h3 class="case-project-name">Smart Cooking &amp; Sommelier</h3>
+          <div class="step-flow">
+            <div class="step-item">
+              <div class="step-marker">1</div>
+              <div class="step-label">문제 정의</div>
+              <p class="step-text">SmartThings 앱 내 쿠킹 콘텐츠 부족으로 기기 활용도와 앱 연결 매출이 낮은 상황</p>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">DAU 694만</div>
-              <div class="metric-label">2배 성장</div>
+            <div class="step-item">
+              <div class="step-marker">2</div>
+              <div class="step-label">가설 수립</div>
+              <p class="step-text">OCR 바코드 인식과 Food Pairing 추천 엔진으로 쿠킹 경험을 자동화하면, 앱 연결 매출과 기기 활성도를 높일 수 있다</p>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">MAU 2.5천만</div>
-              <div class="metric-label">2.3배 성장</div>
+            <div class="step-item">
+              <div class="step-marker">3</div>
+              <div class="step-label">액션 및 검증</div>
+              <ul class="step-actions">
+                <li>Vivino / Bixby Vision 기반 OCR 바코드 인식 적용</li>
+                <li>Food Pairing 알고리즘 매칭 &amp; 추천 엔진 개발</li>
+                <li>Auto-Cooking 기기 자동 설정 연동</li>
+              </ul>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">35%</div>
-              <div class="metric-label">Conversion Rate 증가</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-value">$500k+</div>
-              <div class="metric-label">출시 1달 기여 매출</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-value">15%</div>
-              <div class="metric-label">리테일 매출 증대 기여</div>
+            <div class="step-item">
+              <div class="step-marker">4</div>
+              <div class="step-label">결과</div>
+              <div class="step-results">
+                <span class="step-result-tag">앱 연결 매출 3배 증대</span>
+                <span class="step-result-tag">DAU 694만 (2배 성장)</span>
+                <span class="step-result-tag">MAU 2.5천만 (2.3배 성장)</span>
+              </div>
             </div>
           </div>
-          <div class="case-insight" style="margin-top:20px;">
-            <strong>Cross-Platform:</strong> SmartThings 컨텐츠 확보와 글로벌 외식 냉장고 판매량 증대 기여. Vivino + 빅스비 연결 기반 서비스 시나지 확보.
+        </div>
+        <!-- Health + Commerce -->
+        <div class="case-project">
+          <h3 class="case-project-name">Health + Commerce (North America)</h3>
+          <div class="step-flow">
+            <div class="step-item">
+              <div class="step-marker">1</div>
+              <div class="step-label">문제 정의</div>
+              <p class="step-text">Samsung Health 건강 데이터 활용도 저조 및 리테일 커머스 연동 부재</p>
+            </div>
+            <div class="step-item">
+              <div class="step-marker">2</div>
+              <div class="step-label">가설 수립</div>
+              <p class="step-text">건강 데이터 기반 AI 식단 추천을 커머스와 연결하면, 구매 전환율과 리테일 매출을 높일 수 있다</p>
+            </div>
+            <div class="step-item">
+              <div class="step-marker">3</div>
+              <div class="step-label">액션 및 검증</div>
+              <ul class="step-actions">
+                <li>Samsung Health AI 건강 데이터 분석</li>
+                <li>칼로리 기반 AI 식단 추천 기능 개발</li>
+                <li>Walmart / Amazon 장바구니 커머스 연동</li>
+              </ul>
+            </div>
+            <div class="step-item">
+              <div class="step-marker">4</div>
+              <div class="step-label">결과</div>
+              <div class="step-results">
+                <span class="step-result-tag">Conversion Rate 35% 증가</span>
+                <span class="step-result-tag">출시 1달 $500k+ 기여 매출</span>
+                <span class="step-result-tag">리테일 매출 15% 증대</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -813,48 +972,71 @@
           <span>#Community</span>
         </div>
       </div>
-      <div class="case-content">
-        <div>
-          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:20px;">Game Broadcasting (eSports)</h3>
-          <ul class="case-process">
-            <li><div><div class="step-title">스코어 급변 구간 인식</div><div class="step-desc">실시간 게임 데이터 분석</div></div></li>
-            <li><div><div class="step-title">AI 하이라이트 자동 생성</div><div class="step-desc">핵심 순간 자동 편집 &amp; 제공</div></div></li>
-          </ul>
-          <h3 style="font-size:1.1rem; font-weight:700; margin:28px 0 16px;">Smart Home IoT</h3>
-          <ul class="case-process">
-            <li><div><div class="step-title">IoT 기기 연동</div><div class="step-desc">CCTV, 감지기 등 신규 연동</div></div></li>
-            <li><div><div class="step-title">AI 인식 기반 알림</div><div class="step-desc">움직임 감지 / 화재 감지 AI</div></div></li>
-          </ul>
-        </div>
-        <div>
-          <div class="metrics-grid">
-            <div class="metric-card">
-              <div class="metric-value">2.3배</div>
-              <div class="metric-label">10대 고객 확보</div>
+      <div class="case-projects">
+        <!-- Game Broadcasting (eSports) -->
+        <div class="case-project">
+          <h3 class="case-project-name">Game Broadcasting (eSports)</h3>
+          <div class="step-flow">
+            <div class="step-item">
+              <div class="step-marker">1</div>
+              <div class="step-label">문제 정의</div>
+              <p class="step-text">5G 시대 10대 고객 대상 킬러 콘텐츠 부재로 고객 확보와 체류 시간이 낮은 상황</p>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">1억 원</div>
-              <div class="metric-label">광고 수익 달성</div>
+            <div class="step-item">
+              <div class="step-marker">2</div>
+              <div class="step-label">가설 수립</div>
+              <p class="step-text">AI 하이라이트 자동 생성으로 eSports 콘텐츠 경쟁력을 확보하면, 10대 고객 유입과 체류 시간을 높일 수 있다</p>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">3배</div>
-              <div class="metric-label">체류 시간 증가</div>
+            <div class="step-item">
+              <div class="step-marker">3</div>
+              <div class="step-label">액션 및 검증</div>
+              <ul class="step-actions">
+                <li>실시간 게임 데이터 기반 스코어 급변 구간 인식</li>
+                <li>AI 하이라이트 자동 편집 &amp; 제공</li>
+              </ul>
             </div>
-            <div class="metric-card">
-              <div class="metric-value">2.3배</div>
-              <div class="metric-label">기기 연동 증가</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-value">102만</div>
-              <div class="metric-label">CCTV 최다 가입자 유지</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-value">80%</div>
-              <div class="metric-label">VoC 개선율 달성</div>
+            <div class="step-item">
+              <div class="step-marker">4</div>
+              <div class="step-label">결과</div>
+              <div class="step-results">
+                <span class="step-result-tag">10대 고객 2.3배 확보</span>
+                <span class="step-result-tag">광고 수익 1억 원</span>
+                <span class="step-result-tag">체류 시간 3배 증가</span>
+              </div>
             </div>
           </div>
-          <div class="case-insight" style="margin-top:20px;">
-            <strong>IoT:</strong> 홈 CCTV 최다 가입자 유지(102만, 2018 기준). 고객 데이터 퍼널 분석 바탕으로 증권계좌개설 45% 증가. VoC 개선율 34%에서 80%로 개선.
+        </div>
+        <!-- Smart Home IoT -->
+        <div class="case-project">
+          <h3 class="case-project-name">Smart Home IoT</h3>
+          <div class="step-flow">
+            <div class="step-item">
+              <div class="step-marker">1</div>
+              <div class="step-label">문제 정의</div>
+              <p class="step-text">홈 IoT 기기 연동률 저조 및 고객 VoC 불만 개선 필요 (VoC 개선율 34%)</p>
+            </div>
+            <div class="step-item">
+              <div class="step-marker">2</div>
+              <div class="step-label">가설 수립</div>
+              <p class="step-text">AI 인식 기반 알림과 신규 기기 연동 확대로 CCTV 가입자와 기기 활용도를 높일 수 있다</p>
+            </div>
+            <div class="step-item">
+              <div class="step-marker">3</div>
+              <div class="step-label">액션 및 검증</div>
+              <ul class="step-actions">
+                <li>IoT 기기 신규 연동 (CCTV, 감지기 등)</li>
+                <li>AI 기반 움직임 감지 / 화재 감지 알림 시스템 구축</li>
+              </ul>
+            </div>
+            <div class="step-item">
+              <div class="step-marker">4</div>
+              <div class="step-label">결과</div>
+              <div class="step-results">
+                <span class="step-result-tag">기기 연동 2.3배 증가</span>
+                <span class="step-result-tag">CCTV 최다 가입자 102만 유지</span>
+                <span class="step-result-tag">VoC 개선율 80% 달성</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
