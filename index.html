@@ -634,9 +634,144 @@
       .case-header { flex-direction: column; }
       .hero-stats { flex-direction: column; gap: 16px; align-items: center; }
     }
+
+    /* ===== PDF Button ===== */
+    .pdf-btn {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #2563EB; color: #fff; padding: 12px 22px;
+      border-radius: 50px; font-weight: 700; font-size: 0.9rem;
+      border: none; cursor: pointer;
+      box-shadow: 0 8px 30px rgba(37,99,235,0.4);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pdf-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
+    .pdf-btn svg { width: 16px; height: 16px; fill: #fff; }
+
+    /* ===== Print / PDF ===== */
+    @media print {
+      @page { size: A4; margin: 14mm 16mm; }
+
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      /* 숨길 요소 */
+      nav, .hero-lines, .cta-btn, .pdf-btn, .case-links,
+      .phone-mockup, .phone-mockup-group { display: none !important; }
+
+      body { font-size: 10pt; color: #111; background: #fff; }
+
+      section { padding: 18pt 0; }
+
+      /* 히어로 */
+      .hero {
+        min-height: auto; background: #fff;
+        padding: 0; margin-bottom: 8pt;
+      }
+      .hero::before { display: none; }
+      .hero .container {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 20pt; padding-top: 0; align-items: start;
+      }
+      .hero h1 { font-size: 18pt; margin-bottom: 8pt; }
+      .hero-desc { font-size: 9pt; margin-bottom: 8pt; }
+      .hero-stats { padding: 8pt 0; margin-bottom: 8pt; gap: 20pt; }
+      .hero-stat-value { font-size: 14pt; }
+      .hero-btns { display: none; }
+
+      /* 프로필 카드 */
+      .profile-card {
+        padding: 16pt; box-shadow: none; border: 1px solid #ddd;
+      }
+      .profile-photo { width: 80px; height: 80px; }
+      .profile-card h3 { font-size: 12pt; }
+      .profile-card .summary { font-size: 8pt; }
+
+      /* About */
+      .impact { background: #fafafa; }
+      .impact-grid { grid-template-columns: 1fr 1fr; gap: 24pt; }
+      .venn { max-width: 180pt; }
+      .venn-circle { font-size: 7pt; }
+      .venn-center { width: 70px; height: 70px; font-size: 6.5pt; }
+      .strength-list li { padding: 8pt 0; }
+      .strength-list h3 { font-size: 10pt; }
+      .strength-list p { font-size: 8.5pt; }
+
+      /* 케이스 카드 - 페이지 중간 끊김 방지 */
+      .case-card {
+        page-break-inside: avoid; break-inside: avoid;
+        padding: 18pt; margin-bottom: 14pt;
+        border: 1px solid #ddd; background: #fafafa;
+        border-radius: 8pt;
+      }
+      .case-company { font-size: 16pt; }
+      .case-subtitle { font-size: 9pt; }
+      .case-tags span { font-size: 7pt; padding: 3pt 8pt; }
+      .case-project { page-break-inside: avoid; break-inside: avoid; }
+      .case-project-name { font-size: 10pt; margin-bottom: 10pt; }
+      .step-item { margin-bottom: 10pt; }
+      .step-label { font-size: 7.5pt; }
+      .step-text { font-size: 8.5pt; }
+      .step-actions li { font-size: 8.5pt; }
+      .step-result-tag { font-size: 7.5pt; padding: 3pt 8pt; }
+
+      /* More Projects */
+      .sub-projects { grid-template-columns: repeat(3, 1fr); gap: 10pt; }
+      .sub-project-card {
+        page-break-inside: avoid; break-inside: avoid;
+        padding: 12pt; border: 1px solid #ddd;
+      }
+      .sub-project-card h4 { font-size: 9pt; }
+      .sub-project-card p { font-size: 8pt; }
+      .sub-metric { font-size: 7.5pt; }
+
+      /* Awards */
+      .awards { background: #fafafa; }
+      .awards-grid { grid-template-columns: repeat(3, 1fr); gap: 10pt; }
+      .award-card {
+        page-break-inside: avoid; break-inside: avoid;
+        padding: 12pt; border: 1px solid #ddd;
+      }
+      .award-card h3 { font-size: 9pt; }
+
+      /* Competencies */
+      .competencies { background: #111; }
+      .comp-grid { grid-template-columns: repeat(4, 1fr); gap: 10pt; }
+      .comp-card {
+        page-break-inside: avoid; break-inside: avoid;
+        padding: 12pt;
+      }
+      .comp-card h3 { font-size: 9pt; }
+      .comp-card p { font-size: 8pt; }
+
+      /* Timeline */
+      .timeline-section { background: #fff; }
+      .timeline-item {
+        page-break-inside: avoid; break-inside: avoid;
+        margin-bottom: 20pt;
+      }
+      .timeline-company { font-size: 12pt; }
+      .timeline-role { font-size: 8.5pt; }
+      .timeline-highlights span { font-size: 7.5pt; }
+
+      /* Contact */
+      .contact { background: #111; color: #fff; }
+      .contact-quote { font-size: 10pt; }
+      .contact-item { font-size: 9pt; }
+
+      /* 섹션 제목 */
+      .section-title { font-size: 16pt; }
+      .section-label { font-size: 7pt; }
+      .section-desc { font-size: 9pt; margin-bottom: 16pt; }
+    }
   </style>
 </head>
 <body>
+
+<!-- PDF Button -->
+<button class="pdf-btn" onclick="window.print()">
+  <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+  PDF 저장
+</button>
 
 <!-- Navigation -->
 <nav id="navbar">
