@@ -635,18 +635,7 @@
       .hero-stats { flex-direction: column; gap: 16px; align-items: center; }
     }
 
-    /* ===== PDF Button ===== */
-    .pdf-btn {
-      position: fixed; bottom: 28px; right: 28px; z-index: 200;
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #2563EB; color: #fff; padding: 12px 22px;
-      border-radius: 50px; font-weight: 700; font-size: 0.9rem;
-      border: none; cursor: pointer;
-      box-shadow: 0 8px 30px rgba(37,99,235,0.4);
-      transition: background 0.2s, transform 0.2s;
-    }
-    .pdf-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
-    .pdf-btn svg { width: 16px; height: 16px; fill: #fff; }
+
 
     /* ===== Print / PDF ===== */
     @media print {
@@ -655,7 +644,7 @@
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
       /* 숨길 요소 */
-      nav, .hero-lines, .cta-btn, .pdf-btn, .case-links,
+      nav, .hero-lines, .cta-btn, .case-links,
       .phone-mockup, .phone-mockup-group { display: none !important; }
 
       body { font-size: 10pt; color: #111; background: #fff; }
@@ -767,11 +756,6 @@
 </head>
 <body>
 
-<!-- PDF Button -->
-<button class="pdf-btn" onclick="window.print()">
-  <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
-  PDF 저장
-</button>
 
 <!-- Navigation -->
 <nav id="navbar">
@@ -1444,16 +1428,24 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   // Mobile timeline
-  if (window.innerWidth <= 768) {
+  function applyMobileTimeline() {
     document.querySelectorAll('.timeline-item').forEach(item => {
       const left = item.querySelector('.timeline-left');
       const right = item.querySelector('.timeline-right');
-      if (left && left.style.visibility !== 'hidden') {
+      if (!left || !right) return;
+      if (window.innerWidth <= 768 && left.style.visibility !== 'hidden') {
         right.style.visibility = 'visible';
         right.innerHTML = left.innerHTML;
+        right.dataset.copied = 'true';
+      } else if (window.innerWidth > 768 && right.dataset.copied) {
+        right.innerHTML = '';
+        right.style.visibility = 'hidden';
+        delete right.dataset.copied;
       }
     });
   }
+  applyMobileTimeline();
+  window.addEventListener('resize', applyMobileTimeline);
 
   // Smooth scroll
   document.querySelectorAll('nav a[href^="#"]').forEach(link => {
